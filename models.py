@@ -8,7 +8,7 @@ class Student(Base):
     student_F_Name = Column(String(50), nullable=False)
     student_L_Name = Column(String(50), nullable=False)
     gpa = Column(Float, nullable=False)
-    # course_id = Column(Integer, ForeignKey("course_id"))
+    course_id = Column(Integer, ForeignKey("courses.course_id"))
 
     course = relationship("Course", back_populates="student")
 
@@ -24,6 +24,5 @@ class Course(Base):
     course_name = Column(String(50), nullable=False)
     course_hours = Column(String(50), nullable=False)
     course_description = Column(Text, nullable=False)
-    students = Column(Integer, ForeignKey("s_id"))
-    
+    student_id = Column(Integer, ForeignKey("students.student_id"))
     student = relationship("Student", back_populates="course")

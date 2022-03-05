@@ -6,7 +6,7 @@ import schemas , main  ,models
 router = APIRouter()
 
 
-@router.get('/students',response_model=List[schemas.showStudent],status_code=status.HTTP_201_CREATED , tags=["Students"])
+@router.get('/students',response_model=List[schemas.Student],status_code=status.HTTP_201_CREATED , tags=["Students"])
 def get_all_students():
     students=main.db.query(models.Student).all()
     return students
@@ -25,7 +25,8 @@ def create_an_student(req: schemas.Student):
     new_student = models.Student(
     student_F_Name=req.student_F_Name,
     student_L_Name=req.student_L_Name,
-    gpa=req.gpa)
+    gpa=req.gpa,
+    course_id=req.course_id )
 
     main.db.add(new_student)
     main.db.commit()

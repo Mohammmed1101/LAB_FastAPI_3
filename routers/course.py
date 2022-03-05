@@ -4,7 +4,7 @@ import schemas , main  ,models
 
 router = APIRouter()
 
-@router.get('courses',response_model=List[schemas.showCourse],status_code=status.HTTP_201_CREATED , tags=["Courses"])
+@router.get('courses',response_model=List[schemas.Course],status_code=status.HTTP_201_CREATED , tags=["Courses"])
 def get_all_courses():
     courses_db = main.db.query(models.Course).all
 
